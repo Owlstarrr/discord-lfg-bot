@@ -6,7 +6,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
-
+// Event Listeners for Discord Bot
 public class EventListener extends ListenerAdapter {
 
     public final String lfgChannelId;
