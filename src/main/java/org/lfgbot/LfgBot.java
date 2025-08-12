@@ -5,23 +5,31 @@ import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.requests.GatewayIntent;
+import org.lfgbot.listeners.EventListener;
 
 
 import javax.security.auth.login.LoginException;
 
 public class LfgBot {
 
-     final Dotenv config;
+    final Dotenv config;
+
 
     public LfgBot() throws LoginException {
+
         config = Dotenv.configure().ignoreIfMissing().load();
         String token = config.get("TOKEN");
 
         JDABuilder jda = JDABuilder.createDefault(token);
+
+        jda.enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT);
         jda.setStatus(OnlineStatus.ONLINE);
         jda.setActivity(Activity.watching("lfg chat"));
-        jda.build();
+        EventListener events = new EventListener(config.get("LFG_CHANNEL"), config.get("COLOR_AS_HEX"));
+        jda.addEventListeners(events);
 
+        jda.build();
     }
 
 
