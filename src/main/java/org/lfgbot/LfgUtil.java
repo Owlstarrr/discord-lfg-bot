@@ -14,9 +14,9 @@ public class LfgUtil {
     public static void handleLfg(String messageAsString, MessageChannel channel, Member messageAuthor, String colorAsHex) {
 
         // TEMP message for testing purposes
-        channel.sendMessage("LFG Message Recieved, Content: " + messageAsString).queue(sentMessage -> {
+        /* channel.sendMessage("LFG Message Recieved, Content: " + messageAsString).queue(sentMessage -> {
             sentMessage.delete().queueAfter(3, TimeUnit.SECONDS);
-        });
+        }); */
 
         // IF USER IS IN VC
         if (messageAuthor != null
