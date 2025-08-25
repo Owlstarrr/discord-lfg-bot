@@ -7,6 +7,10 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 import org.lfgbot.LfgUtil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 // Event Listeners for Discord Bot
 public class EventListener extends ListenerAdapter {
 
@@ -29,17 +33,26 @@ public class EventListener extends ListenerAdapter {
         String channelID = channel.getId();
         Member messageSender = event.getMember();
 
-
-        if (!channelID.equals(lfgChannelId)) return;
+        ArrayList<String> ids = parseChannelsToArrayByComma(lfgChannelId);
+        for (String id : ids) {
+            if (!ids.contains(channelID)) {
+                System.err.println("Invalid channel ID: " + channelID + " — skipping.");
+                continue; // skip this one but keep bot running
+            }
+        }
         if (!messageAsString.toLowerCase().startsWith("!lfg ")) return;
 
         String trimmedMessage = messageAsString.substring(5);
 
-        System.out.println("MSG: " + trimmedMessage);
+        System.out.println("USER: " + messageSender.getEffectiveName() + " MSG: " + trimmedMessage);
 
         event.getMessage().delete().queue();
         LfgUtil.handleLfg(trimmedMessage, channel, messageSender, colorAsHex);
 
+    }
+
+    public static ArrayList<String> parseChannelsToArrayByComma(String lfgChannelId){
+        return new ArrayList<>(Arrays.asList(lfgChannelId.split(",")));
     }
 
 }

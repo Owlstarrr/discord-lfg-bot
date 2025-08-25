@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.entities.channel.middleman.AudioChannel;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class LfgUtil {
@@ -45,9 +46,10 @@ public class LfgUtil {
         builder.setAuthor(messageAuthor.getEffectiveName(),
                 null, messageAuthor.getEffectiveAvatarUrl());
         builder.setColor(Color.decode(colorAsHex));
-        builder.setTitle("Looking for Group");
-        builder.addField("User message: ", trimmedMsg, false);
+        builder.setTitle(trimmedMsg);
         builder.addField("Join here ", vc.getAsMention(), false);
         return builder.build();
     }
+
+
 }
