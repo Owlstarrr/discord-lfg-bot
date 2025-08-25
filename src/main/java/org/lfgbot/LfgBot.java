@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.exceptions.InvalidTokenException;
 import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
@@ -69,8 +70,11 @@ public class LfgBot {
 
         try {
             LfgBot bot = new LfgBot();
-        } catch (LoginException e) {
-            System.out.println("bot token invalid");
+        } catch (InvalidTokenException e) {
+            System.out.println("Please check your .env file!");
+            System.out.println(e.getMessage());
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 }
