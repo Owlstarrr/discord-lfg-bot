@@ -70,11 +70,15 @@ public class LfgBot {
 
         try {
             LfgBot bot = new LfgBot();
-        } catch (LoginException e){
-            System.out.println(e.getMessage());
-        } catch (InvalidTokenException e){
+        } catch (net.dv8tion.jda.api.exceptions.InvalidTokenException e) {
             System.out.println("Please check your .env file");
             System.out.println(e.getMessage());
-        }
+        } catch (javax.security.auth.login.LoginException e) {
+            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+        System.out.println("Configuration error: " + e.getMessage());
+        System.out.println("Make sure TOKEN and other environment variables are set.");
+        e.printStackTrace();
+    }
     }
 }

@@ -34,7 +34,12 @@ public class EventListener extends ListenerAdapter {
         Member messageSender = event.getMember();
 
         ArrayList<String> ids = parseChannelsToArrayByComma(lfgChannelId);
-        if (!ids.contains(channelID)) return;
+        for (String id : ids) {
+            if (!ids.contains(channelID)) {
+                System.err.println("Invalid channel ID: " + channelID + " — skipping.");
+                continue; // skip this one but keep bot running
+            }
+        }
         if (!messageAsString.toLowerCase().startsWith("!lfg ")) return;
 
         String trimmedMessage = messageAsString.substring(5);
