@@ -70,10 +70,10 @@ public class LfgBot {
 
         try {
             LfgBot bot = new LfgBot();
-        } catch (InvalidTokenException e) {
-            System.out.println("Please check your .env file!");
-            System.out.println(e.getMessage());
         } catch (LoginException e){
+            System.out.println(e.getMessage());
+        } catch (InvalidTokenException e){
+            System.out.println("Please check your .env file");
             System.out.println(e.getMessage());
         }
     }
