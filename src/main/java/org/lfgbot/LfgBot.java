@@ -73,7 +73,7 @@ public class LfgBot {
         } catch (InvalidTokenException e) {
             System.out.println("Please check your .env file!");
             System.out.println(e.getMessage());
-        } catch (Exception e){
+        } catch (LoginException e){
             System.out.println(e.getMessage());
         }
     }
