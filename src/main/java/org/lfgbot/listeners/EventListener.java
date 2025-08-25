@@ -37,7 +37,7 @@ public class EventListener extends ListenerAdapter {
         for (String id : ids) {
             if (!ids.contains(channelID)) {
                 System.err.println("Invalid channel ID: " + channelID + " — skipping.");
-                continue; // skip this one but keep bot running
+                continue;
             }
         }
         if (!messageAsString.toLowerCase().startsWith("!lfg ")) return;
