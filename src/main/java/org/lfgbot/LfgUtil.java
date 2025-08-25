@@ -46,8 +46,7 @@ public class LfgUtil {
         builder.setAuthor(messageAuthor.getEffectiveName(),
                 null, messageAuthor.getEffectiveAvatarUrl());
         builder.setColor(Color.decode(colorAsHex));
-        builder.setTitle("Looking for Group");
-        builder.addField("", "**" + trimmedMsg + "**", false);
+        builder.setTitle(trimmedMsg);
         builder.addField("Join here ", vc.getAsMention(), false);
         return builder.build();
     }
